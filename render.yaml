@@ -1,0 +1,16 @@
+# Настройки для Render.com (Blueprint): статический сайт без сборки
+services:
+  - type: web
+    name: probka-board
+    runtime: static
+    branch: main
+    buildCommand: echo "Сборка не нужна — это статический сайт"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /sw.js
+        name: Cache-Control
+        value: no-cache
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache

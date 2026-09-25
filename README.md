@@ -81,7 +81,17 @@
 2. Открой <https://app.netlify.com/drop> и перетащи туда папку.
 3. Готово, Netlify выдаст ссылку.
 
-### Вариант 3. Vercel / Cloudflare Pages
+### Вариант 3. Render.com
+
+В репозитории есть готовый `render.yaml`.
+
+- **Через Blueprint:** Render → **New → Blueprint** → выбери репозиторий. Всё настроится само, включая ветку `main`.
+- **Вручную:** Render → **New → Static Site** → репозиторий, затем:
+  - **Branch:** `main`
+  - **Build Command:** `echo ok` (сборка не нужна)
+  - **Publish Directory:** `.`
+
+### Вариант 4. Vercel / Cloudflare Pages
 
 Импортируй репозиторий. Фреймворк: **Other**, команда сборки пустая, папка для публикации — корень проекта (`.`).
 
