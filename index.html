@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>Пробка — доска заметок</title>
+  <meta name="description" content="Пробковая доска для заметок-стикеров: клей бумажки, соединяй их нитями, отмечай выполненные задачи.">
+  <meta name="theme-color" content="#c49a6c">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Пробка">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="cork" class="hand no-anim">
+
+  <!-- Иконки -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+      <symbol id="i-unlink" viewBox="0 0 24 24"><path d="m18.84 12.25 1.72-1.71a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="m5.17 11.75-1.71 1.71a5 5 0 0 0 7.07 7.07l1.71-1.71"/><path d="M8 2v3"/><path d="M2 8h3"/><path d="M16 22v-3"/><path d="M22 16h-3"/></symbol>
+      <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+      <symbol id="i-redo" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-check-check" viewBox="0 0 24 24"><path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+      <symbol id="i-unlock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></symbol>
+      <symbol id="i-fit" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></symbol>
+      <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+      <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.97 6.01 17.46 2 12 2z"/></symbol>
+      <symbol id="i-file-plus" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 15h6"/><path d="M12 18v-6"/></symbol>
+      <symbol id="i-straight" viewBox="0 0 24 24"><path d="M4 18 20 6"/><circle cx="4" cy="18" r="1.5"/><circle cx="20" cy="6" r="1.5"/></symbol>
+      <symbol id="i-curve" viewBox="0 0 24 24"><path d="M4 7c3 13 13 13 16 0"/><circle cx="4" cy="7" r="1.5"/><circle cx="20" cy="7" r="1.5"/></symbol>
+      <symbol id="i-chain" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><circle cx="19" cy="6" r="2.5"/><path d="M6.3 8.2 10.7 15.8"/><path d="M13.3 15.8 17.7 8.2"/></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Верхняя панель -->
+  <header id="topbar">
+    <div class="bar brand-bar">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><rect x="5" y="7" width="20" height="20" rx="2" fill="#fff176" transform="rotate(-6 15 17)"/><rect x="9" y="5" width="18" height="18" rx="2" fill="#ffb4c8" transform="rotate(5 18 14)"/><circle cx="18" cy="7" r="3.2" fill="#e53935"/><circle cx="17" cy="6" r="1" fill="#ff9e9e"/></svg>
+      </div>
+      <button id="board-btn" class="board-btn" data-popover-trigger title="Доски (двойной клик — переименовать)">
+        <span id="board-name">Моя доска</span>
+        <svg class="i sm"><use href="#i-chevron"/></svg>
+      </button>
+    </div>
+
+    <div class="bar tools-bar" id="tools-bar">
+      <button id="add-btn" class="btn primary" title="Новая заметка (N)">
+        <svg class="i"><use href="#i-plus"/></svg><span class="lbl">Заметка</span>
+      </button>
+      <button id="color-btn" class="btn icon swatch-btn" data-popover-trigger title="Цвет новой заметки"><span class="dot"></span></button>
+      <span class="sep"></span>
+      <button id="link-btn" class="btn icon" title="Соединить нитью (L)"><svg class="i"><use href="#i-link"/></svg></button>
+      <button id="undo-btn" class="btn icon" title="Отменить (Ctrl+Z)" disabled><svg class="i"><use href="#i-undo"/></svg></button>
+      <button id="redo-btn" class="btn icon" title="Повторить (Ctrl+Shift+Z)" disabled><svg class="i"><use href="#i-redo"/></svg></button>
+      <button id="search-toggle" class="btn icon show-sm" title="Поиск"><svg class="i"><use href="#i-search"/></svg></button>
+      <span class="sep hide-sm"></span>
+      <div class="segmented hide-sm" id="filter" role="tablist">
+        <button data-filter="all" class="on">Все</button>
+        <button data-filter="active">В работе</button>
+        <button data-filter="done">Готово</button>
+      </div>
+      <label class="search" id="search-wrap">
+        <svg class="i sm"><use href="#i-search"/></svg>
+        <input id="search" type="search" placeholder="Поиск…  /" autocomplete="off">
+        <kbd id="search-count"></kbd>
+      </label>
+    </div>
+
+    <div class="bar right-bar">
+      <button id="progress" class="progress" data-popover-trigger title="Прогресс">
+        <svg viewBox="0 0 36 36"><circle class="track" cx="18" cy="18" r="15"/><circle class="fill" cx="18" cy="18" r="15"/></svg>
+        <span id="progress-text">0/0</span>
+      </button>
+      <button id="theme-btn" class="btn icon" data-popover-trigger title="Оформление доски"><svg class="i"><use href="#i-palette"/></svg></button>
+      <button id="more-btn" class="btn icon" data-popover-trigger title="Ещё"><svg class="i"><use href="#i-more"/></svg></button>
+    </div>
+  </header>
+
+  <!-- Доска -->
+  <main id="viewport" aria-label="Доска">
+    <div id="world">
+      <div id="notes"></div>
+      <svg id="links" width="1" height="1"></svg>
+    </div>
+    <div id="select-box"></div>
+    <div id="empty-hint">
+      <div class="empty-card">
+        <div class="empty-emoji">📌</div>
+        <b>Доска пока пустая</b>
+        <span>Дважды кликни в любом месте или нажми <kbd>N</kbd>, чтобы приклеить первую заметку</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Масштаб -->
+  <div id="zoom-bar" class="bar">
+    <button class="btn icon" data-act="zoom-out" title="Отдалить (−)"><svg class="i"><use href="#i-minus"/></svg></button>
+    <button class="btn zoom-label" id="zoom-label" data-act="zoom-reset" title="Масштаб 100% (0)">100%</button>
+    <button class="btn icon" data-act="zoom-in" title="Приблизить (+)"><svg class="i"><use href="#i-plus"/></svg></button>
+    <button class="btn icon" data-act="fit" title="Показать всё (F)"><svg class="i"><use href="#i-fit"/></svg></button>
+  </div>
+
+  <!-- Миникарта -->
+  <div id="minimap-wrap" class="bar"><canvas id="minimap"></canvas></div>
+
+  <!-- Панель выделения -->
+  <div id="sel-bar" class="bar floating" hidden>
+    <span id="sel-count">Выбрано: 0</span>
+    <span class="sep"></span>
+    <button class="btn icon" data-act="sel-done" title="Выполнено (D)"><svg class="i"><use href="#i-check"/></svg></button>
+    <div class="swatches" id="sel-swatches"></div>
+    <button class="btn icon" data-act="sel-chain" title="Соединить нитями по цепочке"><svg class="i"><use href="#i-chain"/></svg></button>
+    <button class="btn icon" data-act="sel-dup" title="Дублировать (Ctrl+D)"><svg class="i"><use href="#i-copy"/></svg></button>
+    <button class="btn icon danger" data-act="sel-delete" title="Удалить (Del)"><svg class="i"><use href="#i-trash"/></svg></button>
+  </div>
+
+  <!-- Панель нити -->
+  <div id="link-bar" class="bar floating" hidden>
+    <div class="swatches" id="link-swatches"></div>
+    <button class="btn icon" data-act="link-style" id="link-style-btn" title="Прямая / провисающая"><svg class="i"><use href="#i-curve"/></svg></button>
+    <input id="link-label" type="text" maxlength="40" placeholder="Подпись…" autocomplete="off">
+    <button class="btn icon danger" data-act="link-delete" title="Удалить нить (Del)"><svg class="i"><use href="#i-trash"/></svg></button>
+  </div>
+
+  <div id="toasts" aria-live="polite"></div>
+  <canvas id="confetti"></canvas>
+  <input type="file" id="file-input" accept=".json,application/json" hidden>
+
+  <!-- Справка -->
+  <div class="modal" id="help-modal" hidden>
+    <div class="modal-card help">
+      <button class="btn icon modal-close" data-act="close-modal" title="Закрыть (Esc)"><svg class="i"><use href="#i-x"/></svg></button>
+      <h2>📌 Как пользоваться доской</h2>
+      <div class="help-grid">
+        <section>
+          <h3>Мышкой и пальцем</h3>
+          <ul>
+            <li><b>Двойной клик</b> по доске — новая заметка</li>
+            <li><b>Двойной клик</b> по заметке — редактировать</li>
+            <li>Тяни заметку, чтобы переклеить</li>
+            <li>Тяни <b>булавку</b> 📍 на другую заметку — нить</li>
+            <li><b>Кружок</b> в углу — задача выполнена ✅</li>
+            <li>Уголок справа снизу — размер</li>
+            <li>Тяни пустое место — двигать доску</li>
+            <li><b>Shift</b> + тянуть — выделить рамкой</li>
+            <li>Колёсико / щипок — масштаб</li>
+            <li>Правый клик / долгое нажатие — меню</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Горячие клавиши</h3>
+          <dl class="keys">
+            <dt><kbd>N</kbd></dt><dd>новая заметка</dd>
+            <dt><kbd>Enter</kbd></dt><dd>редактировать</dd>
+            <dt><kbd>D</kbd></dt><dd>выполнено / нет</dd>
+            <dt><kbd>L</kbd></dt><dd>режим нитей</dd>
+            <dt><kbd>1</kbd>–<kbd>7</kbd></dt><dd>цвет заметки</dd>
+            <dt><kbd>Del</kbd></dt><dd>удалить</dd>
+            <dt><kbd>Ctrl</kbd>+<kbd>Z</kbd></dt><dd>отменить</dd>
+            <dt><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></dt><dd>повторить</dd>
+            <dt><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>V</kbd></dt><dd>копировать / вставить</dd>
+            <dt><kbd>Ctrl</kbd>+<kbd>D</kbd></dt><dd>дублировать</dd>
+            <dt><kbd>Ctrl</kbd>+<kbd>A</kbd></dt><dd>выделить всё</dd>
+            <dt><kbd>←↑→↓</kbd></dt><dd>сдвинуть (Shift — сильнее)</dd>
+            <dt><kbd>F</kbd> / <kbd>0</kbd></dt><dd>показать всё / 100%</dd>
+            <dt><kbd>/</kbd></dt><dd>поиск</dd>
+            <dt><kbd>Esc</kbd></dt><dd>снять выделение</dd>
+          </dl>
+        </section>
+        <section>
+          <h3>Оформление текста</h3>
+          <ul class="md-help">
+            <li><code>**жирный**</code> → <b>жирный</b></li>
+            <li><code>*курсив*</code> → <i>курсив</i></li>
+            <li><code>~~зачеркнуть~~</code> → <s>зачеркнуть</s></li>
+            <li><code># Заголовок</code></li>
+            <li><code>- пункт</code> — список</li>
+            <li><code>[ ] дело</code> — чекбокс, кликабельный</li>
+            <li><code>#тег</code> — клик по тегу ищет похожие</li>
+            <li>Ссылки <code>https://…</code> кликабельны</li>
+          </ul>
+        </section>
+      </div>
+      <p class="help-foot">Всё сохраняется автоматически прямо в браузере. Чтобы перенести доску на другое устройство — «Скачать файл доски» или «Поделиться ссылкой» в меню <b>⋯</b>.</p>
+    </div>
+  </div>
+
+  <!-- Диалог -->
+  <div class="modal" id="dialog" hidden>
+    <form class="modal-card dialog" id="dialog-form">
+      <h3 id="dialog-title"></h3>
+      <p id="dialog-text"></p>
+      <input id="dialog-input" type="text" maxlength="60" autocomplete="off">
+      <div class="dialog-actions">
+        <button type="button" class="btn ghost" id="dialog-cancel">Отмена</button>
+        <button type="submit" class="btn primary" id="dialog-ok">ОК</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
